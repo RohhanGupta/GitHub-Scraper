@@ -4,13 +4,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-#scrap_user = input("Enter your username: ")
-#scrap_link = "https://github.com/" + scrap_user
+scrap_user = input("Enter your username: ")
+scrap_link = "https://github.com/" + scrap_user
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
-driver.get("https://github.com/Samikmalhotra")
+driver.get(scrap_link)
 
 name=driver.find_element_by_tag_name("h1").text.split('\n')
 name_of_user = name[0]
@@ -27,9 +27,11 @@ star_repo = followings[2].text
 
 web = driver.find_elements_by_xpath("//a[@class='Link--primary ']")
 
+spec = driver.find_elements_by_xpath("//div[@class='TimelineItem']")
+print("------------------------------>")
+for i in range(len(spec)):
+    print(spec[i].text)
+    print("------------------------------>")
+
 driver.quit()
 
-startdate = input("Enter start date in YYYY-MM-DD format: ")
-enddate = input("Enter end date in YYYY-MM-DD format: ")
-link = "https://github.com/Samikmalhotra?tab=overview&from="+startdate+"&to="+enddate
-print(link)
